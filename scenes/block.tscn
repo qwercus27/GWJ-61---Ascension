@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://hl6g4vo3e86p"]
+
+[ext_resource type="Texture2D" uid="uid://d2rmuga04juoq" path="res://art/block.png" id="1_r2gqs"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p838t"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f06ku"]
+size = Vector2(32, 32)
+
+[node name="Block" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+physics_material_override = SubResource("PhysicsMaterial_p838t")
+metadata/_edit_group_ = true
+metadata/node_name = "block"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r2gqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f06ku")

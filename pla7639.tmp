@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bihdcctyi8s1w"]
+
+[ext_resource type="Script" path="res://player_body.gd" id="1_v158l"]
+[ext_resource type="Texture2D" uid="uid://buli56ksx88e" path="res://art/blob.png" id="2_xt8oo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bk16"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg0ek"]
+radius = 16.0
+
+[node name="PlayerBody" type="CharacterBody2D"]
+script = ExtResource("1_v158l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xt8oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7bk16")
+
+[node name="AscendTimer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gg0ek")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="timeout" from="AscendTimer" to="." method="_on_ascend_timer_timeout"]

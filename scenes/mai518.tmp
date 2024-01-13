@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://beh7xwkgxux23"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_1gd2l"]
+[ext_resource type="PackedScene" uid="uid://hl6g4vo3e86p" path="res://scenes/block.tscn" id="2_q2udi"]
+[ext_resource type="PackedScene" uid="uid://bihdcctyi8s1w" path="res://player_body.tscn" id="3_7h3vr"]
+[ext_resource type="PackedScene" uid="uid://bl1vkodvkng0c" path="res://scenes/bullet.tscn" id="4_hx1rg"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_1gd2l")
+block_scene = ExtResource("2_q2udi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.541176, 0.686275, 1)
+
+[node name="Block" parent="." instance=ExtResource("2_q2udi")]
+position = Vector2(239, 407)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(240, 360)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 360)
+
+[node name="PlayerBody" parent="." instance=ExtResource("3_7h3vr")]
+
+[node name="Bullet" parent="." instance=ExtResource("4_hx1rg")]
+position = Vector2(58, 378)

@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://beh7xwkgxux23"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_1gd2l"]
+[ext_resource type="PackedScene" uid="uid://hl6g4vo3e86p" path="res://scenes/block.tscn" id="2_q2udi"]
+[ext_resource type="PackedScene" uid="uid://bihdcctyi8s1w" path="res://player_body.tscn" id="3_7h3vr"]
+[ext_resource type="PackedScene" uid="uid://dbska3hnpjl0v" path="res://scenes/cannon_block.tscn" id="3_adfuu"]
+[ext_resource type="PackedScene" uid="uid://g5vl6mi3y1p3" path="res://scenes/goal.tscn" id="4_ou7l6"]
+[ext_resource type="PackedScene" uid="uid://d0r4dge4kesl2" path="res://scenes/heart_item.tscn" id="5_a3ivw"]
+[ext_resource type="PackedScene" uid="uid://bjvt48wkcqydj" path="res://scenes/cloud_background.tscn" id="5_dhljb"]
+[ext_resource type="PackedScene" uid="uid://duu22tdbwroub" path="res://scenes/hud.tscn" id="6_6d6f7"]
+[ext_resource type="AudioStream" uid="uid://clfd3ht55b8fr" path="res://music/Ascension Level.mp3" id="8_d43c1"]
+[ext_resource type="AudioStream" uid="uid://crfyvecoxstjb" path="res://music/clear.mp3" id="9_5klob"]
+
+[node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_1gd2l")
+block_scene = ExtResource("2_q2udi")
+cannon_scene = ExtResource("3_adfuu")
+goal_scene = ExtResource("4_ou7l6")
+heart_item_scene = ExtResource("5_a3ivw")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("5_dhljb")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.541176, 0.686275, 1)
+
+[node name="Block" parent="." instance=ExtResource("2_q2udi")]
+position = Vector2(240, 696)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(240, 360)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 360)
+
+[node name="Player" parent="." instance=ExtResource("3_7h3vr")]
+process_mode = 1
+position = Vector2(236, 244)
+
+[node name="Goal" parent="." instance=ExtResource("4_ou7l6")]
+
+[node name="HUD" parent="." instance=ExtResource("6_6d6f7")]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("8_d43c1")
+volume_db = -7.6
+autoplay = true
+
+[node name="ClearSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5klob")
+
+[node name="Groups" type="Node" parent="." groups=["generated"]]
+
+[connection signal="healed" from="Player" to="." method="_on_player_healed"]
+[connection signal="hit" from="Player" to="." method="_on_player_body_hit"]
+[connection signal="crossed" from="Goal" to="." method="_on_goal_crossed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx5aq5yhh61a2"]
+
+[ext_resource type="Script" path="res://scenes/splash_screen.gd" id="1_6lst5"]
+[ext_resource type="Texture2D" uid="uid://d1iwortxrtpbc" path="res://art/61-Ascension.png" id="1_s87hl"]
+[ext_resource type="Texture2D" uid="uid://dw4qw013s84ak" path="res://art/diplomat_card.png" id="2_wacyk"]
+[ext_resource type="Texture2D" uid="uid://cobwk7ktoybtr" path="res://art/GWJ-Half-Logo-Orange.svg" id="3_si67c"]
+
+[node name="SplashScreen" type="Node"]
+script = ExtResource("1_6lst5")
+metadata/_edit_vertical_guides_ = [240.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(480, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.0784314, 0.133333, 0.25098, 1)
+
+[node name="AscensionCard" type="Sprite2D" parent="."]
+position = Vector2(240, 380)
+scale = Vector2(0.105812, 0.105812)
+texture = ExtResource("1_s87hl")
+
+[node name="WildCard" type="Sprite2D" parent="."]
+position = Vector2(240, 570)
+scale = Vector2(0.128864, 0.128864)
+texture = ExtResource("2_wacyk")
+
+[node name="WildJam" type="Sprite2D" parent="."]
+position = Vector2(240, 255)
+scale = Vector2(1.455, 1.455)
+texture = ExtResource("3_si67c")

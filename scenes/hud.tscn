@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://duu22tdbwroub"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_i0hxv"]
+[ext_resource type="PackedScene" uid="uid://6x3nhjldyog8" path="res://scenes/heart.tscn" id="2_r0mom"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6ov0"]
+font_size = 38
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rl1ij"]
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_i0hxv")
+heart_scene = ExtResource("2_r0mom")
+metadata/_edit_vertical_guides_ = [240.0]
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -26.5
+offset_right = 0.5
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_a6ov0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelMessage" type="Label" parent="."]
+anchors_preset = -1
+anchor_top = 0.876
+anchor_right = 1.0
+anchor_bottom = 0.876
+offset_left = 1.0
+offset_top = -18.72
+offset_right = 1.0
+offset_bottom = 18.28
+grow_horizontal = 2
+grow_vertical = 0
+text = "Level 1"
+label_settings = SubResource("LabelSettings_rl1ij")
+horizontal_alignment = 1

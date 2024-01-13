@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0oyabclkkmsi"]
+
+[ext_resource type="Script" path="res://scenes/Prompt.gd" id="1_kpvu5"]
+[ext_resource type="PackedScene" uid="uid://bjvt48wkcqydj" path="res://scenes/cloud_background.tscn" id="1_x1gyv"]
+[ext_resource type="AudioStream" uid="uid://ddh31dv15oj0b" path="res://music/Ascension Menu.mp3" id="2_015uo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p1yce"]
+font_size = 48
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[node name="StartMenu" type="Node"]
+metadata/_edit_vertical_guides_ = [240.0]
+
+[node name="CloudBackground" parent="." instance=ExtResource("1_x1gyv")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.501
+anchor_top = 0.822
+anchor_right = 0.501
+anchor_bottom = 0.822
+offset_left = -77.48
+offset_top = -87.84
+offset_right = 75.52
+offset_bottom = 42.16
+color = Color(0, 0, 0, 0.392157)
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 6.0
+offset_right = 181.0
+offset_bottom = 135.0
+bbcode_enabled = true
+text = "[center][font_size=20]Controls[/font_size]
+
+[b]Jump:[/b]  Spacebar
+[b]Move:[/b]  Arrows
+[b]Pause:[/b]  Escape[/center]"
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ASCENSION"
+label_settings = SubResource("LabelSettings_p1yce")
+
+[node name="Prompt" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.583
+offset_left = -43.0
+offset_top = 0.159973
+offset_right = 45.0
+offset_bottom = 0.23999
+text = "Press Enter"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_kpvu5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_015uo")
+autoplay = true

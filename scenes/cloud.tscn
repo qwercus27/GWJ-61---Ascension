@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7fufwxd7avht"]
+
+[ext_resource type="Texture2D" uid="uid://dpjaf44niulj5" path="res://art/cloud.png" id="1_0t8a7"]
+[ext_resource type="Script" path="res://scenes/cloud.gd" id="1_a2753"]
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource("1_a2753")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0t8a7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.00001, -7.00001)
+scale = Vector2(16.1, 6.9)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

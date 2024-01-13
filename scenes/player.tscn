@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://q62eun0exksn"]
+
+[ext_resource type="Texture2D" uid="uid://buli56ksx88e" path="res://art/blob.png" id="1_2trnw"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_ej8m4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8md7"]
+radius = 17.0
+height = 34.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gbtaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2trnw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2(240, 360)
+gravity_scale = 0.5
+script = ExtResource("1_ej8m4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x8md7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gbtaq")
+
+[node name="AscendTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="AscendTimer" to="." method="_on_ascend_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0r4dge4kesl2"]
+
+[ext_resource type="Script" path="res://scenes/heart_item.gd" id="1_46ji0"]
+[ext_resource type="Texture2D" uid="uid://yh6p0vjijrad" path="res://art/heart_item.png" id="2_u41q6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jw5xp"]
+radius = 7.33333
+height = 17.3333
+
+[node name="HeartItem" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_46ji0")
+metadata/_edit_group_ = true
+metadata/node_name = "heart_item"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u41q6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.77636e-15, -0.666667)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jw5xp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

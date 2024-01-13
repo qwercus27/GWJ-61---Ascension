@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://bihdcctyi8s1w"]
+
+[ext_resource type="Script" path="res://player_body.gd" id="1_v158l"]
+[ext_resource type="Texture2D" uid="uid://d0jfrw7be17n" path="res://art/blob_1.png" id="2_rfrcy"]
+[ext_resource type="Texture2D" uid="uid://docg3cdqkv0yx" path="res://art/blob_0.png" id="2_shlnt"]
+[ext_resource type="AudioStream" uid="uid://bo0xsuiyfdue1" path="res://music/ouch.mp3" id="3_7s80y"]
+[ext_resource type="AudioStream" uid="uid://bhib487bvx32u" path="res://music/jump.mp3" id="3_dn7yv"]
+[ext_resource type="Texture2D" uid="uid://mws2heplpifj" path="res://art/blob_3.png" id="3_ufkaj"]
+[ext_resource type="Texture2D" uid="uid://iref4wgdn5v4" path="res://art/blob_2.png" id="4_cnwki"]
+[ext_resource type="Texture2D" uid="uid://b3bhq7ti6lf24" path="res://art/blob_7.png" id="5_ak5ho"]
+[ext_resource type="Texture2D" uid="uid://5n7acuoxtdnl" path="res://art/blob_8.png" id="7_bxgy4"]
+[ext_resource type="Texture2D" uid="uid://bjnn82y7ijtrc" path="res://art/blob_4.png" id="8_sovas"]
+[ext_resource type="Texture2D" uid="uid://dgtv8qomwart6" path="res://art/blob_6.png" id="9_2w6es"]
+[ext_resource type="Texture2D" uid="uid://bsiuvmdsugm0u" path="res://art/blob_5.png" id="10_xpldt"]
+[ext_resource type="AudioStream" uid="uid://b2cpux2w1syvk" path="res://music/heart_item.mp3" id="13_3pmae"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dxcs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_shlnt")
+}],
+"loop": true,
+"name": &"center_center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cnwki")
+}],
+"loop": true,
+"name": &"center_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rfrcy")
+}],
+"loop": true,
+"name": &"center_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2w6es")
+}],
+"loop": true,
+"name": &"down_center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bxgy4")
+}],
+"loop": true,
+"name": &"down_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ak5ho")
+}],
+"loop": true,
+"name": &"down_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ufkaj")
+}],
+"loop": true,
+"name": &"up_center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_xpldt")
+}],
+"loop": true,
+"name": &"up_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_sovas")
+}],
+"loop": true,
+"name": &"up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rlkfv"]
+radius = 14.0
+height = 30.6667
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg0ek"]
+radius = 16.0
+
+[node name="PlayerBody" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_v158l")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3dxcs")
+animation = &"up_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rlkfv")
+
+[node name="AscendTimer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gg0ek")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.75
+
+[node name="VisibleTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7s80y")
+volume_db = -7.776
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dn7yv")
+volume_db = -7.781
+
+[node name="DirectionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HeartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_3pmae")
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="timeout" from="AscendTimer" to="." method="_on_ascend_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="VisibleTimer" to="." method="_on_visible_timer_timeout"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

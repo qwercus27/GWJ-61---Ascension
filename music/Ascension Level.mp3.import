@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clfd3ht55b8fr"
+path="res://.godot/imported/Ascension Level.mp3-23eb90de80836b6ebed18783e84c0351.mp3str"
+
+[deps]
+
+source_file="res://music/Ascension Level.mp3"
+dest_files=["res://.godot/imported/Ascension Level.mp3-23eb90de80836b6ebed18783e84c0351.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
