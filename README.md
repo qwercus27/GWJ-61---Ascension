@@ -1,2 +1,3 @@
-<h3>Play the game on [itch.io](https://qwercus.itch.io/ascension)</h3>
+<h3>Play the game on itch.io:</h3>
+https://qwercus.itch.io/ascension
  
